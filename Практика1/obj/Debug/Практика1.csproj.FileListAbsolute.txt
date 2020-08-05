@@ -1,0 +1,27 @@
+d:\visual studio 2015\Projects\Практика1\Практика1\bin\Debug\Практика1.exe.config
+d:\visual studio 2015\Projects\Практика1\Практика1\bin\Debug\Практика1.exe
+d:\visual studio 2015\Projects\Практика1\Практика1\bin\Debug\Практика1.pdb
+d:\visual studio 2015\Projects\Практика1\Практика1\obj\Debug\Практика1.csprojResolveAssemblyReference.cache
+d:\visual studio 2015\Projects\Практика1\Практика1\obj\Debug\Практика1.Form1.resources
+d:\visual studio 2015\Projects\Практика1\Практика1\obj\Debug\Практика1.Properties.Resources.resources
+d:\visual studio 2015\Projects\Практика1\Практика1\obj\Debug\Практика1.csproj.GenerateResource.Cache
+d:\visual studio 2015\Projects\Практика1\Практика1\obj\Debug\Практика1.exe
+d:\visual studio 2015\Projects\Практика1\Практика1\obj\Debug\Практика1.pdb
+d:\visual studio 2015\Projects\Практика1\Практика1\obj\Debug\Практика1.csproj.ResolveComReference.cache
+d:\visual studio 2015\Projects\Практика1\Практика1\obj\Debug\Практика1.Form2.resources
+d:\visual studio 2015\Projects\Практика1\Практика1\obj\Debug\Практика1.Form3.resources
+d:\visual studio 2015\Projects\Практика1\Практика1\obj\Debug\Практика1.Form4.resources
+D:\QtRespos\s_prac_ikit\Практика1\Практика1\bin\Debug\Практика1.exe.config
+D:\QtRespos\s_prac_ikit\Практика1\Практика1\bin\Debug\Практика1.exe
+D:\QtRespos\s_prac_ikit\Практика1\Практика1\bin\Debug\Практика1.pdb
+D:\QtRespos\s_prac_ikit\Практика1\Практика1\obj\Debug\Практика1.csprojAssemblyReference.cache
+D:\QtRespos\s_prac_ikit\Практика1\Практика1\obj\Debug\Практика1.csproj.ResolveComReference.cache
+D:\QtRespos\s_prac_ikit\Практика1\Практика1\obj\Debug\Практика1.Form1.resources
+D:\QtRespos\s_prac_ikit\Практика1\Практика1\obj\Debug\Практика1.Form2.resources
+D:\QtRespos\s_prac_ikit\Практика1\Практика1\obj\Debug\Практика1.Form3.resources
+D:\QtRespos\s_prac_ikit\Практика1\Практика1\obj\Debug\Практика1.Form4.resources
+D:\QtRespos\s_prac_ikit\Практика1\Практика1\obj\Debug\Практика1.Properties.Resources.resources
+D:\QtRespos\s_prac_ikit\Практика1\Практика1\obj\Debug\Практика1.csproj.GenerateResource.cache
+D:\QtRespos\s_prac_ikit\Практика1\Практика1\obj\Debug\Практика1.csproj.CoreCompileInputs.cache
+D:\QtRespos\s_prac_ikit\Практика1\Практика1\obj\Debug\Практика1.exe
+D:\QtRespos\s_prac_ikit\Практика1\Практика1\obj\Debug\Практика1.pdb
