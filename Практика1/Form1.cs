@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Xml;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace Практика1
+namespace Практика1         //запихал это в гит
 {
     public partial class Form1 : Form
     {
