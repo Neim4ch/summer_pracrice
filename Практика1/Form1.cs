@@ -12,7 +12,7 @@ using System.Xml;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Практика1         //запихал это в гит
-{                           //ыыыыы
+{                           
     public partial class Form1 : Form
     {
         
@@ -40,7 +40,7 @@ namespace Практика1         //запихал это в гит
         }
         int vibor = 0;
       
-        string raschet_fraction_plus(int kolvo)
+        string raschet_fraction_plus(int kolvo) // плюсовой рассчет оценки нужно уточнить что это такое
         {
             switch (kolvo)
             {
@@ -93,7 +93,7 @@ namespace Практика1         //запихал это в гит
             }return "0";    
                     
         }
-        string raschet_fraction_minus(int gran1, int gran2, int kolvo)
+        string raschet_fraction_minus(int gran1, int gran2, int kolvo) // минусовой рачет оцеки тоже уточнить
         {
             int a = ((gran2 - gran1) - kolvo -1);
             switch (a)
@@ -151,7 +151,7 @@ namespace Практика1         //запихал это в гит
             }
             return "0";
         }
-        int proverk(int gran1)
+        int proverk(int gran1)  // какая-то проверка узнать что это и переименовть чтобы стало ясно
         {
             char[] c = array[1, gran1].ToCharArray();
             try
@@ -168,8 +168,10 @@ namespace Практика1         //запихал это в гит
         /// ////////////////////
         public delegate void InvokeDelegate();
         public delegate void InvokeDelegate1();
-        void brbar2() // перед функцие был static выдавало ошибку я убрал хз с чем это связано ниже так же 
-        {
+        
+        void brbar2() /* перед функцие был static выдавало ошибку я убрал хз с чем это связано ниже так же 
+                         вообще брбар функции отвечают за заполнение прогресс баров  */
+            {
             //progressBar2.Value = progressBar2.Value + 20; ;
             progressBar1.Value++;
         }
@@ -178,7 +180,8 @@ namespace Практика1         //запихал это в гит
              progressBar2.Value++;
         }
 
-        void gategory(string a, XmlDocument document)
+        void gategory(string a, XmlDocument document)   /* функция, которая добавляет в начале хмл информацию о курсе нужна только для этого и фактически работает всегда
+                                                           с одним и тем же полем массива строк в котором указано название лекции [0, 1]*/
         {
             XmlNode element = document.CreateElement("question");
             document.DocumentElement.AppendChild(element); // указываем родителя
@@ -852,8 +855,11 @@ namespace Практика1         //запихал это в гит
 
         public int rowCount;
 
-        private void selectFileButton_Click(object sender, EventArgs e)  //ВЫБОР ФАЙЛА(ТЕПЕРЬ ЭТО ОЧЕВИДНО)
-        {
+        private void selectFileButton_Click(object sender, EventArgs e)  /*ВЫБОР ФАЙЛА(ТЕПЕРЬ ЭТО ОЧЕВИДНО)
+                                                                          Выбираем файл пикаем в двумерный массив строк соответсвующий последней заполненной ячейке
+                                                                          , то есть чуть ли не весь документ в целом претензий нет, однако возможно стоит ограничить область
+                                                                           чтения. Хотя я подозреваю, что этот вопрос решается где-то в другом месте.*/
+        {                                                                  
             ///////////////////////////Выбор файла и заполнение массива
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -865,20 +871,20 @@ namespace Практика1         //запихал это в гит
                 //Thread thr = new Thread(MyThreadFunction);
                    // progressBar2.Maximum = 80;
                     progressBar2.Value = 0;
-               // progressBar1.Value = 0;
+                    progressBar1.Value = 0;
                 Excel.Application ObjWorkExcel = new Excel.Application(); //открыть эксель
-                    //progressBar2.Invoke(new InvokeDelegate1(brbar2));////////////////////////////////
+                                                                    //progressBar2.Invoke(new InvokeDelegate1(brbar2));////////////////////////////////
                 Excel.Workbook ObjWorkBook = ObjWorkExcel.Workbooks.Open(vhodnVail, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing); //открыть файл
-                    //progressBar2.Invoke(new InvokeDelegate1(brbar2));//////////////////////////////
+                                                                     //progressBar2.Invoke(new InvokeDelegate1(brbar2));//////////////////////////////
                 Excel.Worksheet ObjWorkSheet = (Excel.Worksheet)ObjWorkBook.Sheets[1]; //получить 1 лист
                     //progressBar2.Invoke(new InvokeDelegate1(brbar2));///////////////////////
                 var lastCell = ObjWorkSheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell);//1 ячейку
-                    //progressBar2.Invoke(new InvokeDelegate1(brbar2));////////////////////////////////////
+                                                                     //progressBar2.Invoke(new InvokeDelegate1(brbar2));////////////////////////////////////
                 string[,] list = new string[lastCell.Column, lastCell.Row]; // массив значений с листа равен по размеру листу
                 progressBar2.Maximum = lastCell.Column * lastCell.Row;
                 rowCount = lastCell.Row;
-                //progressBar1.Maximum = lastCell.Column * lastCell.Row;
-                //progressBar1.Value = 0;
+                                                                     //progressBar1.Maximum = lastCell.Column * lastCell.Row;
+                                                                     //progressBar1.Value = 0;
                 for (int i = 0; i < lastCell.Column; i++) //по всем колонкам
                     for (int j = 0; j < lastCell.Row; j++) // по всем строкам
                     {
