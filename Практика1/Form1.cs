@@ -196,13 +196,18 @@ namespace Практика1         //запихал это в гит
             subsubElement1.InnerText = "$course$/"+a; // и значение
             subElement1.AppendChild(subsubElement1); // и указываем кому принадлежит
         }
-        void opredelen(XmlDocument document, string name, int gran1, int gran2)
+        void opredelen(XmlDocument document, string name, int gran1, int gran2) /*Функция, которая определяет тип вопроса собственно тут нужно доделывать еще 2 типа вопросов
+                                                                                 gran1 - граница вопроса сверху, gran2 - граница вопроса снизу*/
         {
             if (gran1 == gran2)
             { return; ; }
+            if(name.Contains("[[") && name.Contains("]]"))//gapselect nuzhno testit
+            {
+                gapselect(document, name, gran1, gran2);
+            }
             if ((array[2, gran1 + 1] != "") && (array[2, gran1 + 1] != "1"))
             {
-                matching(document, name, gran1, gran2);///////сопоставление
+                matching(document, name, gran1, gran2);///////сопоставление (1 ко многим?)
             }
             else
             {
@@ -214,17 +219,54 @@ namespace Практика1         //запихал это в гит
                             kolvo_otvetov++;
                         }
                 }
-                if (((gran2 - gran1 - 1) == 2) &&( 1 == kolvo_otvetov)&&(((array[1, gran1 + 2] == "  верно") || (array[1, gran1 + 2] == " верно") || (array[1, gran1 + 2] == " верно ") || (array[1, gran1 + 2] == "верно ") || (array[1, gran1 + 2] == "верно  ") || (array[1,gran1+2]=="верно") || (array[1, gran1 + 2] == "неверно") || (array[1, gran1 + 2] == "  неверно") || (array[1, gran1 + 2] == " неверно") || (array[1, gran1 + 2] == " неверно ") || (array[1, gran1 + 2] == "неверно ") || (array[1, gran1 + 2] == "неверно  "))|| ((array[1, gran1 + 1] == "  верно") || (array[1, gran1 + 1] == " верно") || (array[1, gran1 + 1] == " верно ") || (array[1, gran1 + 1] == "верно ") || (array[1, gran1 + 1] == "верно  ") || (array[1, gran1 + 1] == "верно") || (array[1, gran1 + 1] == "неверно") || (array[1, gran1 + 1] == "  неверно") || (array[1, gran1 + 1] == " неверно") || (array[1, gran1 + 1] == " неверно ") || (array[1, gran1 + 1] == "неверно ") || (array[1, gran1 + 1] == "неверно  "))))//true false
+
+                // условие для тру фолс старое 
+                /*
+                                 if (((gran2 - gran1 - 1) == 2) &&( 1 == kolvo_otvetov)&& // ОООЧЕНЬ СТРАННОЕ УСЛОВИЕ ТУТ НАДО ПОСМОТРЕТЬ ЧТО ВООБЩЕ ПРОИСХОДИТ
+                    (((array[1, gran1 + 2] == "  верно") ||
+                        (array[1, gran1 + 2] == " верно") || 
+                        (array[1, gran1 + 2] == " верно ") ||                   
+                        (array[1, gran1 + 2] == "верно ") ||
+                        (array[1, gran1 + 2] == "верно  ") ||
+                        (array[1, gran1 + 2]=="верно") || 
+                        (array[1, gran1 + 2] == "неверно") ||
+                        (array[1, gran1 + 2] == "  неверно") ||
+                        (array[1, gran1 + 2] == " неверно") ||
+                        (array[1, gran1 + 2] == " неверно ") || 
+                        (array[1, gran1 + 2] == "неверно ") || 
+                    (array[1, gran1 + 2] == "неверно  ")) || 
+                    ((array[1, gran1 + 1] == "  верно") || 
+                        (array[1, gran1 + 1] == " верно") || 
+                        (array[1, gran1 + 1] == " верно ") || 
+                        (array[1, gran1 + 1] == "верно ") || 
+                        (array[1, gran1 + 1] == "верно  ") || 
+                        (array[1, gran1 + 1] == "верно") ||
+                        (array[1, gran1 + 1] == "неверно") || 
+                        (array[1, gran1 + 1] == "  неверно") || 
+                        (array[1, gran1 + 1] == " неверно") || 
+                        (array[1, gran1 + 1] == " неверно ") || 
+                        (array[1, gran1 + 1] == "неверно ") || 
+                    (array[1, gran1 + 1] == "неверно  "))))//true false
+                 */
+
+                // NEW СТРАННОЕ УСЛОВИЕ ТУТ НАДО ПОСМОТРЕТЬ ЧТО ВООБЩЕ ПРОИСХОДИТ.  Ну допустим это правильно ?
+                if (((gran2 - gran1 - 1) == 2) &&( 1 == kolvo_otvetov) && 
+                    (((array[1, gran1 + 2] == "  верно") && (array[1, gran1 + 2] == "неверно  ")) ||  
+                    ((array[1, gran1 + 1] == "  верно") && (array[1, gran1 + 1] == "неверно  "))))      //true false
                 {
                     try
                     {
-                        truefalse(document, name, gran1, gran2);//++++
+                        truefalse(document, name, gran1, gran2);//++++ верно/неверно вопрос
                         kolvo_otvetov = 0;
                     }
-                    catch { MessageBox.Show("1"); /*document.Save(XML)*/; }
+                    catch { MessageBox.Show("1"); /*document.Save(XML)*/; } // видимо отладка
                 }
                 else
                 {
+                    if((gran2 - gran1 - 1) == 1 && (kolvo_otvetov == 1))
+                    {
+                        numerical(document, name, gran1, gran2);
+                    }
                     if (((gran2 - gran1 - 1) > kolvo_otvetov) && (kolvo_otvetov == 1))//multichoice,ответов 1
                     {
                         try
@@ -524,7 +566,7 @@ namespace Практика1         //запихал это в гит
             }
        }
 
-        void truefalse(XmlDocument document, string nasv_vopr, int gran1, int gran2) // ВЕРНО,НЕВЕРНО
+        void truefalse(XmlDocument document, string nasv_vopr, int gran1, int gran2) // ВЕРНО,НЕВЕРНО ТИП ВОПРОСА
         {
             for (int i = gran1; i < gran2; ++i)
             {
@@ -852,6 +894,16 @@ namespace Практика1         //запихал это в гит
             }
 
                 }
+
+        void numerical(XmlDocument document, string nasv_vopr, int gran1, int gran2)
+        {
+
+        }
+        
+        void gapselect(XmlDocument document, string nasv_vopr, int gran1, int gran2)
+        {
+
+        }
 
         public int rowCount;
 
