@@ -34,6 +34,8 @@ namespace Практика1         //запихал это в гит
         int nomer = 1;
         string[,] array;
         string vhodnVail = "";
+       // bool suffleanswers = false;
+
         public Form1()
         {
             InitializeComponent();
@@ -204,6 +206,7 @@ namespace Практика1         //запихал это в гит
             if(name.Contains("[[") && name.Contains("]]"))//gapselect nuzhno testit
             {
                 gapselect(document, name, gran1, gran2);
+                return;
             }
             if ((array[2, gran1 + 1] != "") && (array[2, gran1 + 1] != "1"))
             {
@@ -266,6 +269,7 @@ namespace Практика1         //запихал это в гит
                     if((gran2 - gran1 - 1) == 1 && (kolvo_otvetov == 1))
                     {
                         numerical(document, name, gran1, gran2);
+                        kolvo_otvetov = 0;
                     }
                     if (((gran2 - gran1 - 1) > kolvo_otvetov) && (kolvo_otvetov == 1))//multichoice,ответов 1
                     {
@@ -300,7 +304,7 @@ namespace Практика1         //запихал это в гит
 
         }
        
-        void multichoice_one(XmlDocument document, string nasv_vopr, int gran1, int gran2) // МНОЖЕСТВЕННЫЙ ВЫБОР (1)
+        void multichoice_one(XmlDocument document, string nasv_vopr, int gran1, int gran2) // МНОЖЕСТВЕННЫЙ ВЫБОР (1) пропатчил шафл(протестить)
         {
 
             for (int i = gran1; i < gran2; ++i)
@@ -362,7 +366,8 @@ namespace Практика1         //запихал это в гит
 
             XmlNode shuffleanswers = document.CreateElement("shuffleanswers");
             element.AppendChild(shuffleanswers); // указываем родителя
-            shuffleanswers.InnerText = "true";
+            //shuffleanswers.InnerText = "true";
+            shuffleanswers.InnerText = Convert.ToString(checkBoxShuffle.Checked);
 
             XmlNode answernumbering = document.CreateElement("answernumbering");
             element.AppendChild(answernumbering); // указываем родителя
@@ -433,7 +438,7 @@ namespace Практика1         //запихал это в гит
             }
         }
 
-        void multichoice(XmlDocument document,string nasv_vopr, int kolvo,int gran1 ,int gran2) // МНОЖЕСТВЕННЫЙ ВЫБОР (МНОГО)
+        void multichoice(XmlDocument document,string nasv_vopr, int kolvo,int gran1 ,int gran2) // МНОЖЕСТВЕННЫЙ ВЫБОР (МНОГО) пропатчил шафл(протестить)
         {
             for (int i = gran1; i < gran2; ++i)
             {
@@ -493,7 +498,8 @@ namespace Практика1         //запихал это в гит
 
             XmlNode shuffleanswers = document.CreateElement("shuffleanswers");
             element.AppendChild(shuffleanswers); // указываем родителя
-            shuffleanswers.InnerText = "true";
+            //shuffleanswers.InnerText = "true";
+            shuffleanswers.InnerText = Convert.ToString(checkBoxShuffle.Checked);
 
             XmlNode answernumbering = document.CreateElement("answernumbering");
             element.AppendChild(answernumbering); // указываем родителя
@@ -566,7 +572,7 @@ namespace Практика1         //запихал это в гит
             }
        }
 
-        void truefalse(XmlDocument document, string nasv_vopr, int gran1, int gran2) // ВЕРНО,НЕВЕРНО ТИП ВОПРОСА
+        void truefalse(XmlDocument document, string nasv_vopr, int gran1, int gran2) // ВЕРНО,НЕВЕРНО ТИП ВОПРОСА нет шафла
         {
             for (int i = gran1; i < gran2; ++i)
             {
@@ -663,7 +669,7 @@ namespace Практика1         //запихал это в гит
             }      
         }
 
-        void shortanswer(XmlDocument document, string nasv_vopr, int kolvo, int gran1, int gran2) // КОРОТКИЙ ОТВЕТ (Я ТАК ПОНИМАЮ ВПИСАТЬ ПРОСТО)
+        void shortanswer(XmlDocument document, string nasv_vopr, int kolvo, int gran1, int gran2) // КОРОТКИЙ ОТВЕТ (Я ТАК ПОНИМАЮ ВПИСАТЬ ПРОСТО) нет шафла
         {
             for (int i = gran1; i < gran2; ++i)
             {
@@ -748,7 +754,7 @@ namespace Практика1         //запихал это в гит
             }
         }
 
-        void matching(XmlDocument document, string nasv_vopr, int gran1, int gran2) //СОПОСТАВЛЕНИЕ (1 КО МНОГИМ СУДЯ ПО ВСЕМУ)
+        void matching(XmlDocument document, string nasv_vopr, int gran1, int gran2) //СОПОСТАВЛЕНИЕ (1 КО МНОГИМ СУДЯ ПО ВСЕМУ) пропатчил шафл (тест)
         {
             for (int i = gran1; i < gran2; ++i)
             {
@@ -803,7 +809,9 @@ namespace Практика1         //запихал это в гит
             hidden.InnerText = "0";
             XmlNode shuffleanswers = document.CreateElement("shuffleanswers");
             element.AppendChild(shuffleanswers); // указываем родителя
-            shuffleanswers.InnerText = "true";
+            //shuffleanswers.InnerText = "true";
+            shuffleanswers.InnerText = Convert.ToString(checkBoxShuffle.Checked);
+
             XmlNode correctfeedback = document.CreateElement("correctfeedback"); // даём имя
             element.AppendChild(correctfeedback); // и указываем кому принадлежит
             XmlAttribute format_correctfeedback = document.CreateAttribute("format"); // создаём атрибут
