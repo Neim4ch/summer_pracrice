@@ -182,6 +182,21 @@ namespace Практика1         //запихал это в гит
              progressBar2.Value++;
         }
 
+        string setAnswerNumbering()
+        {
+            int value = comboBoxNumeration.SelectedIndex;
+
+            switch(value)
+            {
+                case 0: return "abc";
+                case 1: return "ABC";       //некорректное значение нужно на курсах протестить
+                case 2: return "123";       //некорректное значение нужно на курсах протестить
+                case 3: return "I II III";  //некорректное значение нужно на курсах протестить
+                case 4: return "i ii iii";  //некорректное значение нужно на курсах протестить
+                default: return "none";
+            }
+        }
+
         void gategory(string a, XmlDocument document)   /* функция, которая добавляет в начале хмл информацию о курсе нужна только для этого и фактически работает всегда
                                                            с одним и тем же полем массива строк в котором указано название лекции [0, 1]*/
         {
@@ -371,7 +386,8 @@ namespace Практика1         //запихал это в гит
 
             XmlNode answernumbering = document.CreateElement("answernumbering");
             element.AppendChild(answernumbering); // указываем родителя
-            answernumbering.InnerText = "abc";
+            //answernumbering.InnerText = "abc";
+            answernumbering.InnerText = setAnswerNumbering();
 
             XmlNode correctfeedback = document.CreateElement("correctfeedback"); // даём имя
             element.AppendChild(correctfeedback); // и указываем кому принадлежит
@@ -503,8 +519,10 @@ namespace Практика1         //запихал это в гит
 
             XmlNode answernumbering = document.CreateElement("answernumbering");
             element.AppendChild(answernumbering); // указываем родителя
-            answernumbering.InnerText = "abc";
-            
+            //answernumbering.InnerText = "abc";
+            answernumbering.InnerText = setAnswerNumbering();
+
+
             XmlNode correctfeedback = document.CreateElement("correctfeedback"); // даём имя
             element.AppendChild(correctfeedback); // и указываем кому принадлежит
             XmlAttribute format_correctfeedback = document.CreateAttribute("format"); // создаём атрибут
@@ -905,12 +923,237 @@ namespace Практика1         //запихал это в гит
 
         void numerical(XmlDocument document, string nasv_vopr, int gran1, int gran2)
         {
+            for (int i = gran1; i < gran2; ++i)
+            {
+                array[1, i] = replace_enter_to_spacebar(array[1, i]);
+            }
+            ////
+            nasv_vopr = replace_enter_to_spacebar(nasv_vopr);
+            XmlNode element = document.CreateElement("question");
+            document.DocumentElement.AppendChild(element); // указываем родителя
+            XmlAttribute attribute = document.CreateAttribute("type"); // создаём атрибут
+            attribute.Value = "numerical";
+            element.Attributes.Append(attribute);
 
+            XmlNode subElement1 = document.CreateElement("name"); // даём имя
+            element.AppendChild(subElement1); // и указываем кому принадлежит
+
+            XmlNode subsubElement1 = document.CreateElement("text"); // даём имя
+            subsubElement1.InnerText = array[1, 1] + " " + array[0, gran1]; // и значение
+            nomer++;
+            subElement1.AppendChild(subsubElement1); // и указываем кому принадлежит
+
+            XmlNode questiontext = document.CreateElement("questiontext");
+            element.AppendChild(questiontext); // указываем родителя
+            XmlAttribute format = document.CreateAttribute("format"); // создаём атрибут
+            format.Value = "html";
+            questiontext.Attributes.Append(format);
+
+            XmlNode subquestiontext = document.CreateElement("text"); // даём имя
+            subquestiontext.InnerText = nasv_vopr; // и значение
+            questiontext.AppendChild(subquestiontext); // и указываем кому принадлежит
+            ////
+            XmlNode generalfeedback = document.CreateElement("generalfeedback"); // даём имя
+            element.AppendChild(generalfeedback); // и указываем кому принадлежит
+            XmlAttribute format_generalfeedback = document.CreateAttribute("format"); // создаём атрибут
+            format_generalfeedback.Value = "html";
+            generalfeedback.Attributes.Append(format_generalfeedback);
+
+            XmlNode subgeneralfeedback = document.CreateElement("text"); // даём имя
+            subgeneralfeedback.InnerText = ""; // и значение
+            generalfeedback.AppendChild(subgeneralfeedback); // и указываем кому принадлежит
+            ///////////////
+            XmlNode defaultgrade = document.CreateElement("defaultgrade");
+            element.AppendChild(defaultgrade); // указываем родителя
+            defaultgrade.InnerText = "1.0000000";
+
+            XmlNode penalty = document.CreateElement("penalty");
+            element.AppendChild(penalty); // указываем родителя
+            penalty.InnerText = Convert.ToString(penalt);
+
+            XmlNode hidden = document.CreateElement("hidden");
+            element.AppendChild(hidden); // указываем родителя
+            hidden.InnerText = "0";
+            //////////////////////////////////////////
+            
+       //     XmlNode shuffleanswers = document.CreateElement("shuffleanswers");
+       //     element.AppendChild(shuffleanswers); // указываем родителя
+            //shuffleanswers.InnerText = "true";
+       //     shuffleanswers.InnerText = Convert.ToString(checkBoxShuffle.Checked);
+
+       //     string fraction_plus = Convert.ToString(raschet_fraction_plus(kolvo));
+       //     string fraction_minus = Convert.ToString(raschet_fraction_minus(gran1, gran2, kolvo));
+            XmlNode answer = document.CreateElement("answer");
+            element.AppendChild(answer); // указываем родителя
+            XmlAttribute fract = document.CreateAttribute("fraction"); // создаём атрибут  
+         //       if (array[2, gran1 + j + 1] == "1")
+         //       {
+         //           fract.Value = fraction_plus;
+         //       }
+         //       else { fract.Value = fraction_minus; }
+         //       answer.Attributes.Append(fract);
+
+            fract.Value = "100";
+            answer.Attributes.Append(fract);
+
+            XmlAttribute answerformat = document.CreateAttribute("format");
+            answerformat.Value = "moodle_auto_format";
+            answer.Attributes.Append(answerformat);
+           // answerformat.Value = "moodle_auto_format";
+            //
+            XmlNode subansw = document.CreateElement("text"); // даём имя          
+            subansw.InnerText = array[1, gran1 + 1]; // и значение
+            answer.AppendChild(subansw);
+                ////////
+            XmlNode feedback = document.CreateElement("feedback"); // даём имя
+            answer.AppendChild(feedback); // и указываем кому принадлежит
+            XmlAttribute format_feedback = document.CreateAttribute("format"); // создаём атрибут
+            format_feedback.Value = "html";
+            feedback.Attributes.Append(format_feedback);
+
+            XmlNode subfeedback = document.CreateElement("text"); // даём имя
+            subfeedback.InnerText = ""; // и значение
+            feedback.AppendChild(subfeedback); // и указываем кому принадлежит
+
+            XmlNode tolerance = document.CreateElement("tolerance");
+            tolerance.InnerText = "0";
+            answer.AppendChild(tolerance);
+
+            XmlNode units = document.CreateElement("units");
+            element.AppendChild(units);
+
+            XmlNode subunits_unit = document.CreateElement("unit");
+            units.AppendChild(subunits_unit);
+
+            XmlNode subunit_multiplier = document.CreateElement("multiplier");
+            subunits_unit.AppendChild(subunit_multiplier);
+            subunit_multiplier.InnerText = "1";
+
+            XmlNode subunit_unit_name = document.CreateElement("unit_name");/* здесь идет фича с забиванием ответов с единицами измерения
+                                                                             * нужно чекнуть что да как когда сайт встанет */
+            subunits_unit.AppendChild(subunit_unit_name);
+            subunit_unit_name.InnerText = "";
+
+            XmlNode unitgradingtype = document.CreateElement("unitgradingtype");/* разобраться с тем как 
+                                                                                 * пишутся штрафы */
+            element.AppendChild(unitgradingtype);
+            unitgradingtype.InnerText = "0";    //?
+
+            XmlNode unitpenalty = document.CreateElement("unitpenalty");
+            element.AppendChild(unitpenalty);
+            unitpenalty.InnerText = "0.1000000";    //?
+
+            XmlNode showunits = document.CreateElement("showunits");
+            element.AppendChild(showunits);
+            showunits.InnerText = "0";
+
+            XmlNode unitsleft = document.CreateElement("unitsleft");
+            element.AppendChild(unitsleft);
+            unitsleft.InnerText = "0";
         }
-        
+
         void gapselect(XmlDocument document, string nasv_vopr, int gran1, int gran2)
         {
+            for (int i = gran1; i < gran2; ++i)
+            {
+                array[1, i] = replace_enter_to_spacebar(array[1, i]);
+            }
+            ////
+            nasv_vopr = replace_enter_to_spacebar(nasv_vopr);
+            XmlNode element = document.CreateElement("question");
+            document.DocumentElement.AppendChild(element); // указываем родителя
+            XmlAttribute attribute = document.CreateAttribute("type"); // создаём атрибут
+            attribute.Value = "gapselect";
+            element.Attributes.Append(attribute);
 
+            XmlNode subElement1 = document.CreateElement("name"); // даём имя
+            element.AppendChild(subElement1); // и указываем кому принадлежит
+
+            XmlNode subsubElement1 = document.CreateElement("text"); // даём имя
+            subsubElement1.InnerText = array[1, 1] + " " + array[0, gran1]; // и значение
+            nomer++;
+            subElement1.AppendChild(subsubElement1); // и указываем кому принадлежит
+
+            XmlNode questiontext = document.CreateElement("questiontext");
+            element.AppendChild(questiontext); // указываем родителя
+            XmlAttribute format = document.CreateAttribute("format"); // создаём атрибут
+            format.Value = "html";
+            questiontext.Attributes.Append(format);
+
+            XmlNode subquestiontext = document.CreateElement("text"); // даём имя
+            subquestiontext.InnerText = nasv_vopr; // и значение
+            questiontext.AppendChild(subquestiontext); // и указываем кому принадлежит
+            ////
+            XmlNode generalfeedback = document.CreateElement("generalfeedback"); // даём имя
+            element.AppendChild(generalfeedback); // и указываем кому принадлежит
+            XmlAttribute format_generalfeedback = document.CreateAttribute("format"); // создаём атрибут
+            format_generalfeedback.Value = "html";
+            generalfeedback.Attributes.Append(format_generalfeedback);
+
+            XmlNode subgeneralfeedback = document.CreateElement("text"); // даём имя
+            subgeneralfeedback.InnerText = ""; // и значение
+            generalfeedback.AppendChild(subgeneralfeedback); // и указываем кому принадлежит
+            ///////////////
+            XmlNode defaultgrade = document.CreateElement("defaultgrade");
+            element.AppendChild(defaultgrade); // указываем родителя
+            defaultgrade.InnerText = "1.0000000";
+
+            XmlNode penalty = document.CreateElement("penalty");
+            element.AppendChild(penalty); // указываем родителя
+            penalty.InnerText = Convert.ToString(penalt);
+
+            XmlNode hidden = document.CreateElement("hidden");
+            element.AppendChild(hidden); // указываем родителя
+            hidden.InnerText = "0";
+            //////////////////////////////////////////
+
+            XmlNode shuffleanswers = document.CreateElement("shuffleanswers");
+            element.AppendChild(shuffleanswers);
+            shuffleanswers.InnerText = "1";
+
+            XmlNode correctfeedback = document.CreateElement("correctfeedback");
+            element.AppendChild(correctfeedback);
+            XmlAttribute format_correctfeedback = document.CreateAttribute("format");
+            format_correctfeedback.Value = "html";
+            correctfeedback.Attributes.Append(format_correctfeedback);
+
+            XmlNode subcorrectfeedback = document.CreateElement("text");
+            correctfeedback.AppendChild(subcorrectfeedback);
+            subcorrectfeedback.InnerText = "";
+
+            XmlNode partiallycorrectfeedback = document.CreateElement("partiallycorrectfeedback");
+            element.AppendChild(partiallycorrectfeedback);
+            XmlAttribute format_partiallycorrectfeedback = document.CreateAttribute("format");
+            format_partiallycorrectfeedback.Value = "html";
+            partiallycorrectfeedback.Attributes.Append(format_partiallycorrectfeedback);
+
+            XmlNode subpartiallycorrectfeedback = document.CreateElement("text");
+            partiallycorrectfeedback.AppendChild(subpartiallycorrectfeedback);
+            subpartiallycorrectfeedback.InnerText = "";
+
+            XmlNode incorrectfeedback = document.CreateElement("incorrectfeedback");
+            element.AppendChild(incorrectfeedback);
+            XmlAttribute format_incorrectfeedback = document.CreateAttribute("format");
+            format_incorrectfeedback.Value = "html";
+            incorrectfeedback.Attributes.Append(format_incorrectfeedback);
+
+            XmlNode subincorrectfeedback = document.CreateElement("text");
+            incorrectfeedback.AppendChild(subincorrectfeedback);
+            subincorrectfeedback.InnerText = "";
+
+            for (int j = 0; j < (gran2 - gran1) - 1; ++j)
+            {
+                XmlNode selectoption = document.CreateElement("selectoption");
+                element.AppendChild(selectoption);
+
+                XmlNode subSelectOptionText = document.CreateElement("text");
+                selectoption.AppendChild(subSelectOptionText);
+                subSelectOptionText.InnerText = array[1, gran1 + j + 1];
+
+                XmlNode subSelectOptionGroup = document.CreateElement("group");
+                selectoption.AppendChild(subSelectOptionGroup);
+                subSelectOptionGroup.InnerText = array[2, gran1 + j + 1];
+            }
         }
 
         public int rowCount;
@@ -941,11 +1184,11 @@ namespace Практика1         //запихал это в гит
                 var lastCell = ObjWorkSheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell);//1 ячейку
                                                                      //progressBar2.Invoke(new InvokeDelegate1(brbar2));////////////////////////////////////
                 string[,] list = new string[lastCell.Column, lastCell.Row]; // массив значений с листа равен по размеру листу
-                progressBar2.Maximum = lastCell.Column * lastCell.Row;
+                progressBar2.Maximum = /*lastCell.Column*/ 3 * lastCell.Row;
                 rowCount = lastCell.Row;
                                                                      //progressBar1.Maximum = lastCell.Column * lastCell.Row;
                                                                      //progressBar1.Value = 0;
-                for (int i = 0; i < lastCell.Column; i++) //по всем колонкам
+                for (int i = 0; i < 3/*lastCell.Column*/; i++) //по всем колонкам
                     for (int j = 0; j < lastCell.Row; j++) // по всем строкам
                     {
                         list[i, j] = ObjWorkSheet.Cells[j + 1, i + 1].Text.ToString();//считываем текст в строку

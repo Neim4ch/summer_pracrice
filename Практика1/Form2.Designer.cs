@@ -53,9 +53,10 @@
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label3.Location = new System.Drawing.Point(12, 57);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(425, 15);
+            this.label3.Size = new System.Drawing.Size(610, 15);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Реализовали:  Студент КИ16-01 Шилоносов Николай, Рыбков Михаил Викторович";
+            this.label3.Text = "Реализовали:  Студент КИ16-01 Шилоносов Николай, Рыбков Михаил Викторович, Студен" +
+    "т КИ19-02/2б Нейман Игорь\r\n";
             // 
             // label4
             // 
@@ -66,7 +67,8 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 15);
             this.label4.TabIndex = 3;
-            this.label4.Text = "2017 год";
+            this.label4.Text = "2020 год";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // button1
             // 
@@ -83,7 +85,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(571, 126);
+            this.ClientSize = new System.Drawing.Size(659, 126);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
