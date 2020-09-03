@@ -1311,5 +1311,10 @@ namespace Практика1
             Form5 frm5 = new Form5();
             frm5.Show();
         }
+
+        private void checkBoxShuffle_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

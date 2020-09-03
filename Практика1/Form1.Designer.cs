@@ -58,7 +58,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(8, 38);
+            this.textBox1.Location = new System.Drawing.Point(12, 38);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(301, 20);
             this.textBox1.TabIndex = 0;
@@ -69,11 +69,11 @@
             this.selectFile.FlatAppearance.BorderColor = System.Drawing.Color.Cyan;
             this.selectFile.FlatAppearance.BorderSize = 2;
             this.selectFile.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.selectFile.Location = new System.Drawing.Point(383, 38);
+            this.selectFile.Location = new System.Drawing.Point(376, 38);
             this.selectFile.Name = "selectFile";
             this.selectFile.Size = new System.Drawing.Size(143, 23);
             this.selectFile.TabIndex = 1;
-            this.selectFile.Text = "выбрать файл";
+            this.selectFile.Text = "Выбрать файл";
             this.toolTip1.SetToolTip(this.selectFile, "Файл должен быть формата *.xlsx");
             this.selectFile.UseVisualStyleBackColor = false;
             this.selectFile.Click += new System.EventHandler(this.selectFileButton_Click);
@@ -81,7 +81,7 @@
             // generateXmlButton
             // 
             this.generateXmlButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.generateXmlButton.Location = new System.Drawing.Point(383, 67);
+            this.generateXmlButton.Location = new System.Drawing.Point(376, 67);
             this.generateXmlButton.Name = "generateXmlButton";
             this.generateXmlButton.Size = new System.Drawing.Size(143, 23);
             this.generateXmlButton.TabIndex = 3;
@@ -98,7 +98,7 @@
             // 
             this.progressBar1.BackColor = System.Drawing.Color.White;
             this.progressBar1.ForeColor = System.Drawing.Color.Lime;
-            this.progressBar1.Location = new System.Drawing.Point(548, 67);
+            this.progressBar1.Location = new System.Drawing.Point(525, 67);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(100, 23);
             this.progressBar1.TabIndex = 4;
@@ -107,7 +107,7 @@
             // 
             this.progressBar2.BackColor = System.Drawing.Color.White;
             this.progressBar2.ForeColor = System.Drawing.Color.Lime;
-            this.progressBar2.Location = new System.Drawing.Point(548, 38);
+            this.progressBar2.Location = new System.Drawing.Point(525, 38);
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(100, 23);
             this.progressBar2.TabIndex = 5;
@@ -133,9 +133,9 @@
             // 
             // showAuthorsButton
             // 
-            this.showAuthorsButton.Location = new System.Drawing.Point(533, 136);
+            this.showAuthorsButton.Location = new System.Drawing.Point(525, 138);
             this.showAuthorsButton.Name = "showAuthorsButton";
-            this.showAuthorsButton.Size = new System.Drawing.Size(115, 23);
+            this.showAuthorsButton.Size = new System.Drawing.Size(100, 21);
             this.showAuthorsButton.TabIndex = 12;
             this.showAuthorsButton.Text = "Об авторах";
             this.showAuthorsButton.UseVisualStyleBackColor = true;
@@ -148,7 +148,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(130, 99);
+            this.button4.Location = new System.Drawing.Point(134, 99);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(115, 60);
             this.button4.TabIndex = 13;
@@ -158,7 +158,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(8, 99);
+            this.button5.Location = new System.Drawing.Point(12, 99);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(116, 60);
             this.button5.TabIndex = 14;
@@ -180,12 +180,13 @@
             // checkBoxShuffle
             // 
             this.checkBoxShuffle.AutoSize = true;
-            this.checkBoxShuffle.Location = new System.Drawing.Point(383, 99);
+            this.checkBoxShuffle.Location = new System.Drawing.Point(376, 99);
             this.checkBoxShuffle.Name = "checkBoxShuffle";
             this.checkBoxShuffle.Size = new System.Drawing.Size(138, 17);
             this.checkBoxShuffle.TabIndex = 16;
             this.checkBoxShuffle.Text = "Перемешать вопросы";
             this.checkBoxShuffle.UseVisualStyleBackColor = true;
+            this.checkBoxShuffle.CheckedChanged += new System.EventHandler(this.checkBoxShuffle_CheckedChanged);
             // 
             // comboBoxNumeration
             // 
@@ -206,7 +207,7 @@
             "I, II, III, ...",
             "i, ii, iii, ...",
             "Не нумеровать"});
-            this.comboBoxNumeration.Location = new System.Drawing.Point(383, 138);
+            this.comboBoxNumeration.Location = new System.Drawing.Point(376, 138);
             this.comboBoxNumeration.Name = "comboBoxNumeration";
             this.comboBoxNumeration.Size = new System.Drawing.Size(138, 21);
             this.comboBoxNumeration.TabIndex = 17;
@@ -215,7 +216,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(380, 122);
+            this.label3.Location = new System.Drawing.Point(376, 119);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(104, 13);
             this.label3.TabIndex = 18;
@@ -224,7 +225,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(251, 99);
+            this.button1.Location = new System.Drawing.Point(255, 99);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(115, 60);
             this.button1.TabIndex = 19;
@@ -236,7 +237,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(672, 168);
+            this.ClientSize = new System.Drawing.Size(641, 168);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBoxNumeration);
