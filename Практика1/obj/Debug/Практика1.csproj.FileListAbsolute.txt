@@ -39,3 +39,4 @@ D:\QtRespos\s_prac_ikit\gitbt\summer_pracrice\Практика1\obj\Debug\Пра
 D:\QtRespos\s_prac_ikit\gitbt\summer_pracrice\Практика1\obj\Debug\Практика1.csproj.CoreCompileInputs.cache
 D:\QtRespos\s_prac_ikit\gitbt\summer_pracrice\Практика1\obj\Debug\Практика1.exe
 D:\QtRespos\s_prac_ikit\gitbt\summer_pracrice\Практика1\obj\Debug\Практика1.pdb
+D:\QtRespos\s_prac_ikit\gitbt\summer_pracrice\Практика1\obj\Debug\Практика1.Form5.resources

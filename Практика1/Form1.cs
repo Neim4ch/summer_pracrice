@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Xml;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace Практика1         //запихал это в гит
+namespace Практика1         
 {                           
     public partial class Form1 : Form
     {
@@ -42,7 +42,7 @@ namespace Практика1         //запихал это в гит
         }
         int vibor = 0;
       
-        string raschet_fraction_plus(int kolvo) // плюсовой рассчет оценки нужно уточнить что это такое
+        string raschet_fraction_plus(int kolvo)
         {
             switch (kolvo)
             {
@@ -95,7 +95,7 @@ namespace Практика1         //запихал это в гит
             }return "0";    
                     
         }
-        string raschet_fraction_minus(int gran1, int gran2, int kolvo) // минусовой рачет оцеки тоже уточнить
+        string raschet_fraction_minus(int gran1, int gran2, int kolvo) 
         {
             int a = ((gran2 - gran1) - kolvo -1);
             switch (a)
@@ -153,7 +153,7 @@ namespace Практика1         //запихал это в гит
             }
             return "0";
         }
-        int proverk(int gran1)  // какая-то проверка узнать что это и переименовть чтобы стало ясно
+        int proverk(int gran1) 
         {
             char[] c = array[1, gran1].ToCharArray();
             try
@@ -171,8 +171,7 @@ namespace Практика1         //запихал это в гит
         public delegate void InvokeDelegate();
         public delegate void InvokeDelegate1();
         
-        void brbar2() /* перед функцие был static выдавало ошибку я убрал хз с чем это связано ниже так же 
-                         вообще брбар функции отвечают за заполнение прогресс баров  */
+        void brbar2() 
             {
             //progressBar2.Value = progressBar2.Value + 20; ;
             progressBar1.Value++;
@@ -188,17 +187,16 @@ namespace Практика1         //запихал это в гит
 
             switch(value)
             {
-                case 0: return "abc";
-                case 1: return "ABC";       //некорректное значение нужно на курсах протестить
-                case 2: return "123";       //некорректное значение нужно на курсах протестить
-                case 3: return "I II III";  //некорректное значение нужно на курсах протестить
-                case 4: return "i ii iii";  //некорректное значение нужно на курсах протестить
-                default: return "none";
+                case 0: return "abc";   //+
+                case 1: return "ABCD";  //+
+                case 2: return "123";   //+
+                case 3: return "IIII";  //+
+                case 4: return "iii";   //+
+                default: return "none"; //+
             }
         }
 
-        void gategory(string a, XmlDocument document)   /* функция, которая добавляет в начале хмл информацию о курсе нужна только для этого и фактически работает всегда
-                                                           с одним и тем же полем массива строк в котором указано название лекции [0, 1]*/
+        void gategory(string a, XmlDocument document)  
         {
             XmlNode element = document.CreateElement("question");
             document.DocumentElement.AppendChild(element); // указываем родителя
@@ -213,19 +211,19 @@ namespace Практика1         //запихал это в гит
             subsubElement1.InnerText = "$course$/"+a; // и значение
             subElement1.AppendChild(subsubElement1); // и указываем кому принадлежит
         }
-        void opredelen(XmlDocument document, string name, int gran1, int gran2) /*Функция, которая определяет тип вопроса собственно тут нужно доделывать еще 2 типа вопросов
+        void opredelen(XmlDocument document, string name, int gran1, int gran2) /*Функция, которая определяет тип вопроса 
                                                                                  gran1 - граница вопроса сверху, gran2 - граница вопроса снизу*/
         {
             if (gran1 == gran2)
             { return; ; }
-            if(name.Contains("[[") && name.Contains("]]"))//gapselect nuzhno testit
+            if(name.Contains("[[") && name.Contains("]]"))//gapselect 
             {
                 gapselect(document, name, gran1, gran2);
                 return;
             }
-            if ((array[2, gran1 + 1] != "") && (array[2, gran1 + 1] != "1"))
+            if ((array[2, gran1 + 1] != "") && (array[2, gran1 + 1] != "1"))//matching
             {
-                matching(document, name, gran1, gran2);///////сопоставление (1 ко многим?)
+                matching(document, name, gran1, gran2);
             }
             else
             {
@@ -238,46 +236,17 @@ namespace Практика1         //запихал это в гит
                         }
                 }
 
-                // условие для тру фолс старое 
-                /*
-                                 if (((gran2 - gran1 - 1) == 2) &&( 1 == kolvo_otvetov)&& // ОООЧЕНЬ СТРАННОЕ УСЛОВИЕ ТУТ НАДО ПОСМОТРЕТЬ ЧТО ВООБЩЕ ПРОИСХОДИТ
-                    (((array[1, gran1 + 2] == "  верно") ||
-                        (array[1, gran1 + 2] == " верно") || 
-                        (array[1, gran1 + 2] == " верно ") ||                   
-                        (array[1, gran1 + 2] == "верно ") ||
-                        (array[1, gran1 + 2] == "верно  ") ||
-                        (array[1, gran1 + 2]=="верно") || 
-                        (array[1, gran1 + 2] == "неверно") ||
-                        (array[1, gran1 + 2] == "  неверно") ||
-                        (array[1, gran1 + 2] == " неверно") ||
-                        (array[1, gran1 + 2] == " неверно ") || 
-                        (array[1, gran1 + 2] == "неверно ") || 
-                    (array[1, gran1 + 2] == "неверно  ")) || 
-                    ((array[1, gran1 + 1] == "  верно") || 
-                        (array[1, gran1 + 1] == " верно") || 
-                        (array[1, gran1 + 1] == " верно ") || 
-                        (array[1, gran1 + 1] == "верно ") || 
-                        (array[1, gran1 + 1] == "верно  ") || 
-                        (array[1, gran1 + 1] == "верно") ||
-                        (array[1, gran1 + 1] == "неверно") || 
-                        (array[1, gran1 + 1] == "  неверно") || 
-                        (array[1, gran1 + 1] == " неверно") || 
-                        (array[1, gran1 + 1] == " неверно ") || 
-                        (array[1, gran1 + 1] == "неверно ") || 
-                    (array[1, gran1 + 1] == "неверно  "))))//true false
-                 */
 
-                // NEW СТРАННОЕ УСЛОВИЕ ТУТ НАДО ПОСМОТРЕТЬ ЧТО ВООБЩЕ ПРОИСХОДИТ.  Ну допустим это правильно ?
                 if (((gran2 - gran1 - 1) == 2) &&( 1 == kolvo_otvetov) && 
                     (((array[1, gran1 + 2] == "  верно") && (array[1, gran1 + 2] == "неверно  ")) ||  
                     ((array[1, gran1 + 1] == "  верно") && (array[1, gran1 + 1] == "неверно  "))))      //true false
                 {
                     try
                     {
-                        truefalse(document, name, gran1, gran2);//++++ верно/неверно вопрос
+                        truefalse(document, name, gran1, gran2);
                         kolvo_otvetov = 0;
                     }
-                    catch { MessageBox.Show("1"); /*document.Save(XML)*/; } // видимо отладка
+                    catch { MessageBox.Show("1"); /*document.Save(XML)*/; } //отладка
                 }
                 else
                 {
@@ -305,7 +274,7 @@ namespace Практика1         //запихал это в гит
                         }
                         catch { MessageBox.Show("3"); /*document.Save(XML) */; }
                     }
-                    if ((gran2 - gran1 - 1) == kolvo_otvetov)//ввод названия
+                    if ((gran2 - gran1 - 1) == kolvo_otvetov)//shortanswer
                     {
                         try
                         {
@@ -319,7 +288,7 @@ namespace Практика1         //запихал это в гит
 
         }
        
-        void multichoice_one(XmlDocument document, string nasv_vopr, int gran1, int gran2) // МНОЖЕСТВЕННЫЙ ВЫБОР (1) пропатчил шафл(протестить)
+        void multichoice_one(XmlDocument document, string nasv_vopr, int gran1, int gran2) // МНОЖЕСТВЕННЫЙ ВЫБОР (1) (shuffle, numbering)
         {
 
             for (int i = gran1; i < gran2; ++i)
@@ -454,7 +423,7 @@ namespace Практика1         //запихал это в гит
             }
         }
 
-        void multichoice(XmlDocument document,string nasv_vopr, int kolvo,int gran1 ,int gran2) // МНОЖЕСТВЕННЫЙ ВЫБОР (МНОГО) пропатчил шафл(протестить)
+        void multichoice(XmlDocument document,string nasv_vopr, int kolvo,int gran1 ,int gran2) // МНОЖЕСТВЕННЫЙ ВЫБОР (МНОГО) (shuffle, numbering)
         {
             for (int i = gran1; i < gran2; ++i)
             {
@@ -590,7 +559,7 @@ namespace Практика1         //запихал это в гит
             }
        }
 
-        void truefalse(XmlDocument document, string nasv_vopr, int gran1, int gran2) // ВЕРНО,НЕВЕРНО ТИП ВОПРОСА нет шафла
+        void truefalse(XmlDocument document, string nasv_vopr, int gran1, int gran2) // ВЕРНО,НЕВЕРНО ТИП ВОПРОСА (no shuffle, no numbering)
         {
             for (int i = gran1; i < gran2; ++i)
             {
@@ -687,7 +656,7 @@ namespace Практика1         //запихал это в гит
             }      
         }
 
-        void shortanswer(XmlDocument document, string nasv_vopr, int kolvo, int gran1, int gran2) // КОРОТКИЙ ОТВЕТ (Я ТАК ПОНИМАЮ ВПИСАТЬ ПРОСТО) нет шафла
+        void shortanswer(XmlDocument document, string nasv_vopr, int kolvo, int gran1, int gran2) // КОРОТКИЙ ОТВЕТ (no shuffle, no numbering)
         {
             for (int i = gran1; i < gran2; ++i)
             {
@@ -772,7 +741,7 @@ namespace Практика1         //запихал это в гит
             }
         }
 
-        void matching(XmlDocument document, string nasv_vopr, int gran1, int gran2) //СОПОСТАВЛЕНИЕ (1 КО МНОГИМ СУДЯ ПО ВСЕМУ) пропатчил шафл (тест)
+        void matching(XmlDocument document, string nasv_vopr, int gran1, int gran2) //СОПОСТАВЛЕНИЕ (shuffle, no numbeering)
         {
             for (int i = gran1; i < gran2; ++i)
             {
@@ -921,7 +890,7 @@ namespace Практика1         //запихал это в гит
 
                 }
 
-        void numerical(XmlDocument document, string nasv_vopr, int gran1, int gran2)
+        void numerical(XmlDocument document, string nasv_vopr, int gran1, int gran2) //ЧИСЛОВОЙ (no shuffle, no numbering) units? 
         {
             for (int i = gran1; i < gran2; ++i)
             {
@@ -1029,13 +998,11 @@ namespace Практика1         //запихал это в гит
             subunits_unit.AppendChild(subunit_multiplier);
             subunit_multiplier.InnerText = "1";
 
-            XmlNode subunit_unit_name = document.CreateElement("unit_name");/* здесь идет фича с забиванием ответов с единицами измерения
-                                                                             * нужно чекнуть что да как когда сайт встанет */
+            XmlNode subunit_unit_name = document.CreateElement("unit_name");
             subunits_unit.AppendChild(subunit_unit_name);
             subunit_unit_name.InnerText = "";
 
-            XmlNode unitgradingtype = document.CreateElement("unitgradingtype");/* разобраться с тем как 
-                                                                                 * пишутся штрафы */
+            XmlNode unitgradingtype = document.CreateElement("unitgradingtype");
             element.AppendChild(unitgradingtype);
             unitgradingtype.InnerText = "0";    //?
 
@@ -1052,7 +1019,7 @@ namespace Практика1         //запихал это в гит
             unitsleft.InnerText = "0";
         }
 
-        void gapselect(XmlDocument document, string nasv_vopr, int gran1, int gran2)
+        void gapselect(XmlDocument document, string nasv_vopr, int gran1, int gran2) //ВЫПАДАЮЩИЕ МЕНЮ (shuffle, no numbering)
         {
             for (int i = gran1; i < gran2; ++i)
             {
@@ -1109,7 +1076,8 @@ namespace Практика1         //запихал это в гит
 
             XmlNode shuffleanswers = document.CreateElement("shuffleanswers");
             element.AppendChild(shuffleanswers);
-            shuffleanswers.InnerText = "1";
+            //shuffleanswers.InnerText = "1";
+            shuffleanswers.InnerText = Convert.ToString(checkBoxShuffle.Checked);
 
             XmlNode correctfeedback = document.CreateElement("correctfeedback");
             element.AppendChild(correctfeedback);
@@ -1158,10 +1126,10 @@ namespace Практика1         //запихал это в гит
 
         public int rowCount;
 
-        private void selectFileButton_Click(object sender, EventArgs e)  /*ВЫБОР ФАЙЛА(ТЕПЕРЬ ЭТО ОЧЕВИДНО)
-                                                                          Выбираем файл пикаем в двумерный массив строк соответсвующий последней заполненной ячейке
-                                                                          , то есть чуть ли не весь документ в целом претензий нет, однако возможно стоит ограничить область
-                                                                           чтения. Хотя я подозреваю, что этот вопрос решается где-то в другом месте.*/
+        private void selectFileButton_Click(object sender, EventArgs e)  /*  ВЫБОР ФАЙЛА КНОПКА
+                                                                          *  Выбираем файл помещаем в двумерный массив строк соответсвующий
+                                                                          *  [ 3 первым столбцам, номеру последней заполненной строки]
+                                                                          */
         {                                                                  
             ///////////////////////////Выбор файла и заполнение массива
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -1211,7 +1179,7 @@ namespace Практика1         //запихал это в гит
         public int kolvo_otvetov = 0;
         
 
-        private void generateXmlButton_Click(object sender, EventArgs e) //СГЕНЕРИТЬ ФАЙЛ
+        private void generateXmlButton_Click(object sender, EventArgs e) //СОЗДАНИЕ XML ФАЙЛА
         {
             if (vibor == 0)
             {
@@ -1279,7 +1247,18 @@ namespace Практика1         //запихал это в гит
                             }
                             catch
                             {
-                                MessageBox.Show("Конвертирование завершено." + "\n" + "Итоговый файл и путь к нему(который совпадает с местоположением исходного *.xlsx) " + XML ); ; document.Save(XML); gran1 = 0; kolvo_otvetov = 0; gran2 = 0; flag = 0; name = ""; break;
+                                MessageBox.Show("Конвертирование завершено." + "\n" + "Итоговый файл и путь к нему(который совпадает с местоположением исходного *.xlsx) " + XML ); ; 
+                                document.Save(XML); 
+                                gran1 = 0; 
+                                kolvo_otvetov = 0; 
+                                gran2 = 0; 
+                                flag = 0; 
+                                name = "";
+
+                                progressBar1.Value = 0;
+                                progressBar2.Value = 0;
+
+                                break;
                             }
                         }
                     }
@@ -1289,7 +1268,7 @@ namespace Практика1         //запихал это в гит
             }
         }
 
-        //private void label1_Click(object sender, EventArgs e) //*ВОПРОСИТЕЛЬНЫЙ ЗНАК*
+        //private void label1_Click(object sender, EventArgs e) 
         //{
 
         //}
@@ -1325,6 +1304,12 @@ namespace Практика1         //запихал это в гит
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form5 frm5 = new Form5();
+            frm5.Show();
         }
     }
 }

@@ -47,6 +47,7 @@
             this.checkBoxShuffle = new System.Windows.Forms.CheckBox();
             this.comboBoxNumeration = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,7 +69,7 @@
             this.selectFile.FlatAppearance.BorderColor = System.Drawing.Color.Cyan;
             this.selectFile.FlatAppearance.BorderSize = 2;
             this.selectFile.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.selectFile.Location = new System.Drawing.Point(315, 38);
+            this.selectFile.Location = new System.Drawing.Point(383, 38);
             this.selectFile.Name = "selectFile";
             this.selectFile.Size = new System.Drawing.Size(143, 23);
             this.selectFile.TabIndex = 1;
@@ -80,7 +81,7 @@
             // generateXmlButton
             // 
             this.generateXmlButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.generateXmlButton.Location = new System.Drawing.Point(315, 67);
+            this.generateXmlButton.Location = new System.Drawing.Point(383, 67);
             this.generateXmlButton.Name = "generateXmlButton";
             this.generateXmlButton.Size = new System.Drawing.Size(143, 23);
             this.generateXmlButton.TabIndex = 3;
@@ -97,7 +98,7 @@
             // 
             this.progressBar1.BackColor = System.Drawing.Color.White;
             this.progressBar1.ForeColor = System.Drawing.Color.Lime;
-            this.progressBar1.Location = new System.Drawing.Point(480, 67);
+            this.progressBar1.Location = new System.Drawing.Point(548, 67);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(100, 23);
             this.progressBar1.TabIndex = 4;
@@ -106,7 +107,7 @@
             // 
             this.progressBar2.BackColor = System.Drawing.Color.White;
             this.progressBar2.ForeColor = System.Drawing.Color.Lime;
-            this.progressBar2.Location = new System.Drawing.Point(480, 38);
+            this.progressBar2.Location = new System.Drawing.Point(548, 38);
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(100, 23);
             this.progressBar2.TabIndex = 5;
@@ -132,7 +133,7 @@
             // 
             // showAuthorsButton
             // 
-            this.showAuthorsButton.Location = new System.Drawing.Point(480, 121);
+            this.showAuthorsButton.Location = new System.Drawing.Point(533, 136);
             this.showAuthorsButton.Name = "showAuthorsButton";
             this.showAuthorsButton.Size = new System.Drawing.Size(115, 23);
             this.showAuthorsButton.TabIndex = 12;
@@ -147,9 +148,9 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(152, 99);
+            this.button4.Location = new System.Drawing.Point(130, 99);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(115, 53);
+            this.button4.Size = new System.Drawing.Size(115, 60);
             this.button4.TabIndex = 13;
             this.button4.Text = "Ввод ответа, сопоставление, верно \\ неверно";
             this.button4.UseVisualStyleBackColor = true;
@@ -159,7 +160,7 @@
             // 
             this.button5.Location = new System.Drawing.Point(8, 99);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(128, 53);
+            this.button5.Size = new System.Drawing.Size(116, 60);
             this.button5.TabIndex = 14;
             this.button5.Text = "Bыбор одного \\ нескольких верных";
             this.button5.UseVisualStyleBackColor = true;
@@ -179,7 +180,7 @@
             // checkBoxShuffle
             // 
             this.checkBoxShuffle.AutoSize = true;
-            this.checkBoxShuffle.Location = new System.Drawing.Point(315, 99);
+            this.checkBoxShuffle.Location = new System.Drawing.Point(383, 99);
             this.checkBoxShuffle.Name = "checkBoxShuffle";
             this.checkBoxShuffle.Size = new System.Drawing.Size(138, 17);
             this.checkBoxShuffle.TabIndex = 16;
@@ -205,7 +206,7 @@
             "I, II, III, ...",
             "i, ii, iii, ...",
             "Не нумеровать"});
-            this.comboBoxNumeration.Location = new System.Drawing.Point(315, 138);
+            this.comboBoxNumeration.Location = new System.Drawing.Point(383, 138);
             this.comboBoxNumeration.Name = "comboBoxNumeration";
             this.comboBoxNumeration.Size = new System.Drawing.Size(138, 21);
             this.comboBoxNumeration.TabIndex = 17;
@@ -214,18 +215,29 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(312, 122);
+            this.label3.Location = new System.Drawing.Point(380, 122);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(104, 13);
             this.label3.TabIndex = 18;
             this.label3.Text = "Выбор нумерации: ";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(251, 99);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(115, 60);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "Выпадающие меню, числовой ";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 168);
+            this.ClientSize = new System.Drawing.Size(672, 168);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBoxNumeration);
             this.Controls.Add(this.checkBoxShuffle);
@@ -269,6 +281,7 @@
         private System.Windows.Forms.ComboBox comboBoxNumeration;
         private System.Windows.Forms.CheckBox checkBoxShuffle;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button1;
     }
 }
 
